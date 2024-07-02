@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calcul IMC</title>
-  <!-- <link rel="stylesheet" href="./style.css" /> -->
+  <link rel="stylesheet" href="./style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -18,19 +18,24 @@
 
   <div class="imc">
     <h2 class="imc__title">Calcul d'IMC</h2>
-    <div class="imc__head">
-      <div class="imc__taille">
-        <label for="taille">Votre taille en centimetre, Ex: 180</label>
-        <input type="number" name="taille" id="taille" placeholder="Votre taille en centimetre">
+    <form >
+      <div class="imc__head">
+        <div class="imc__taille">
+          <label for="taille">Votre taille en centimetre, Ex: 180</label>
+          <input type="number" name="taille" id="taille" placeholder="Votre taille en centimetre">
+        </div>
+        <div class="imc__poids">
+          <label for="poids">Votre poids en Kg,, Ex: 80</label>
+          <input type="number" name="poids" id="poids" placeholder="Votre poids en Kg">
+        </div>
       </div>
-      <div class="imc__poids">
-        <label for="poids">Votre poids en Kg,, Ex: 80</label>
-        <input type="number" name="poids" id="poids" placeholder="Votre poids en Kg">
-      </div>
-    </div>
-    <button class="imc__calcul-button" type="button">Calculer de l'IMC</button>
+      <button class="imc__calcul-button" type="submit">Calculer de l'IMC</button>
+    </form>
+    
+    <div class="imc__infos">
     <p class="imc__resultat">0</p>
     <p class="imc__infos-resultat">En attente du resultat</p>
+    </div>
   </div>
   
   <script src="app.js"></script>

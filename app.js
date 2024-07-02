@@ -24,27 +24,23 @@ const BMIData = [
 si je ne rempli pas la height donc c'est une chaine de caractere vide qui est falsy ca retourne false apres ca l'inverse a true et donc ca execute la condition
  */
 
-// function calculateBMI() {
-//   const inputs = document.querySelectorAll("input");
-//   const height = inputs[0].value;
-//   const weight = inputs[1].value;
-
-//   if (height === ""  || inputs.value <= 0) {
-//     console.log("error");
-//     return;
-//   }
-
-//   const BMI = (weight / Math.pow(height / 100, 2)).toFixed(1);
-//   console.log(BMI);
-// }
 
 const inputTaille = document.getElementById("taille");
 const inputPoids = document.getElementById("poids");
 const calculButton = document.querySelector(".imc__calcul-button");
 const resultat = document.querySelector(".imc__resultat");
 const infosResultat = document.querySelector(".imc__infos-resultat");
+const form = document.querySelector("form");
 
-calculButton.addEventListener("click", () => {
+form.addEventListener("submit", handleForm);
+
+function handleForm(e) {
+  e.preventDefault();
+
+  handleError();
+}
+
+function handleError() {
   if (
     inputPoids.value === "" ||
     inputTaille.value === "" ||
@@ -52,25 +48,25 @@ calculButton.addEventListener("click", () => {
     inputTaille.value <= 0
   ) {
     resultat.textContent = "Veuillez remplir les inputs";
-    return;
+    resultat.style.color = "black";
+  } else {
+    calculateBMI();
   }
+}
+
+function calculateBMI() {
   let imc = 0;
 
   imc = inputPoids.value / (inputTaille.value / 100) ** 2;
   console.log(imc);
 
+  showResult(imc);
+}
+
+function showResult(imc) {
   const rank = BMIData.find((data) => imc < data.range[1]);
 
   resultat.textContent = imc.toFixed(2);
   infosResultat.textContent = `Resultat : ${rank.name}`;
   resultat.style.color = rank.color;
-});
-
-console.log(
-  infosResultat,
-  inputPoids,
-  inputTaille,
-  calculButton,
-  resultat,
-  infosResultat
-);
+}
